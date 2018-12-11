@@ -2,7 +2,7 @@
   "name": "client",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://joeyoo.github.io",
+  "homepage": "https://joeyoo.github.io/",
   "dependencies": {
     "gh-pages": "^2.0.1",
     "react": "^16.6.3",
