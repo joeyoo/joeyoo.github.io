@@ -1,0 +1,50 @@
+/* control */
+.control-cnt {
+  position: relative;
+  width: 50%;
+  min-width: 310px;
+  float: left;
+  background-color: brown;
+}
+
+/* eye */
+.eye {
+  position: relative;
+  width: 300px; height: 300px;
+  margin: 150px auto;
+  background-color: #ffffff;
+  -webkit-border-radius: 50%; -moz-border-radius: 50%; border-radius: 50%;
+}
+/* blue eye and shadow */
+.eye-inside-cnt {
+  position: absolute;
+  width: 150px; height: 150px;
+  margin: 75px;
+}
+.eye-inside {
+  width: 150px; height: 150px;
+  background-color: green;
+  -webkit-border-radius: 50%; -moz-border-radius: 50%; border-radius: 50%;
+  overflow: hidden;
+}
+.eye-inside-cnt:before {
+  position: absolute;
+  display: block;
+  content: '';
+  width: 156px;
+  height: 156px;
+  top: -4px;
+  left: -4px;
+  -webkit-border-radius: 150px; -moz-border-radius: 150px; border-radius: 150px;
+  border: 2px solid #E7E7E7;
+  border-right: none; border-bottom: none;
+}
+/* eye inside (black) */
+.eye-really-inside {
+  width: 100px; height: 100px;
+  margin-top: 25px;
+  margin-left: 25px;
+  background-color: #000;
+  -webkit-border-radius: 50%; -moz-border-radius: 50%; border-radius: 50%;
+  -webkit-transition: 0.1s linear; -moz-transition: 0.1s linear; transition: 0.1s linear;
+}
