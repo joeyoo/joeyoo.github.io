@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 // import Header from './Header';
 import { Grid, Image, Step, Icon, Segment, Container, Header } from 'semantic-ui-react';
-
-import Project from './Projects/Project';
-import SideMenu from './Projects/SideMenu';
-import img from './assets/portrait.jpg';
+import {withRouter} from 'react-router-dom';
+import Project from './Project';
+import SideMenu from './SideMenu';
+// import img from '../assets/portrait.jpg';
 
 class ProjectsPage extends Component {
 	render() {
@@ -19,7 +19,6 @@ class ProjectsPage extends Component {
     	<Project />
     </Grid.Column>
   </Grid>
-			// </div>
 		)
 	}
 }
