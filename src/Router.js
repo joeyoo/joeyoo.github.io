@@ -1,23 +1,21 @@
 import React, { Component } from 'react';
-import {
-  BrowserRouter,
-  Route,
-  Link,
-  Redirect,
-  withRouter
-} from "react-router-dom";
+import { BrowserRouter, Route as BrowserRoute, Redirect, withRouter, Switch } from "react-router-dom";
+import {Grid, Container, Button, Sticky} from 'semantic-ui-react';
 import request from 'request-promise';
-import './Styles/App.css';
-import Auth from './Auth/Auth';
-import ProjectsPage from './Projects/ProjectsPage';
-import Server from './config';
+
+import {ServerURL} from './0_config';
+import Auth from './1_Auth';
+import Projects from './1_Projects';
+import Home from './1_Home';
+
 
 class AuthRoute extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      authorized: false,
-      path: '/',
+      authorized: props.authorized || false,
+      path: props.path || '/',
+      component: props.component || null,
       authToAuth: false
     };
   }
@@ -29,31 +27,39 @@ class AuthRoute extends Component {
           sPath = state.path,
           newState = {};
 
-    if (pAuth == sAuth && pPath == sPath) return null;
-    if (pAuth != sAuth) newState.authorized = pAuth;
-    if (pPath != sPath) newState.path = pPath;
-    if (pPath == '/auth' && sPath == '/auth' && pAuth == true) newState.authToAuth = true;
+    if (pAuth === sAuth && pPath === sPath) return null;
+    if (pAuth !== sAuth) newState.authorized = pAuth;
+    if (pPath !== sPath) newState.path = pPath;
+    if (pPath === '/auth' && sPath === '/auth' && pAuth === true) newState.authToAuth = true;
     return newState;
   }
 
   render() {
     const p = Object.assign(this.state, this.props);
-    console.log(p);
     return (
-      <Route
+      <BrowserRoute
         {...p}
         render={ props =>
           this.state.authorized && !this.state.authToAuth
             ? (<Component {...props} />)
-            : ((this.state.authToAuth) ? (<Redirect to="projects" from={this.state.path} />) :(<Redirect to="auth" from={this.state.path} />))
+            : ((this.state.authToAuth && this.state.authorized)
+              ? (<Redirect to={{
+                pathname: '/projects',
+                state: {
+                  referrer: props.path,
+                  authorized: props.authorized
+                }}} from={this.state.path} />)
+              : (<Redirect to="auth" from={this.state.path} />))
         }
       />
     );
   }
 }
 
-const ARoute = withRouter(AuthRoute);
-
+const Route = withRouter(AuthRoute);
+/*
+  Router will serve as Store
+*/
 export default class Router extends Component {
   constructor(props) {
     super(props);
@@ -61,12 +67,16 @@ export default class Router extends Component {
     this._checkToken();
   }
 
+  shouldComponentUpdate(nextProps, nextState) {
+    return this.state.authorized !== nextState.authorized;
+  }
+
   async _checkToken() {
     try {
       const token = localStorage.getItem('token');
       if (!token) return;
 
-      const res = await request({method: "GET", url: Server.url, json: true, qs: {access_token: token}});
+      const res = await request({method: "GET", url: ServerURL, json: true, qs: {access_token: token}});
       this.setState({authorized: res.auth});
     }
     catch(err) {
@@ -77,19 +87,16 @@ export default class Router extends Component {
   render() {
     const {authorized} = this.state;
     return (
-      <BrowserRouter>
-        <div>
-          <Redirect from="/" to="projects" />
-          <ARoute name="projects"
-                     path="/projects"
-                     component={ProjectsPage}
-                     authorized={authorized} />
-          <ARoute name="auth"
-                     path="/auth"
-                     component={Auth}
-                     authorized={authorized} />
-        </div>
-      </BrowserRouter>
+        <BrowserRouter>
+          <Switch>
+            {/*<BrowserRoute path="/" component={Home} />*/}
+            <BrowserRoute path="/auth" component={Auth}/>
+            <Route path={"/projects"}
+                 component={Projects}
+                 authorized={authorized} />
+            <Route component={Auth}/>
+          </Switch>
+        </BrowserRouter>
     );
   }
 }
