@@ -133,7 +133,7 @@ class Auth extends Component {
     const eye = this.state.authorized === true ? "eyeC" : "eye",
           eye2 = this.state.authorized === true ? "eye2C" : "eye2";
     return (
-          <div>
+        <div>
             <Popup trigger={<Icon name='help' className='help circle'/>} hoverable position='left center'>
                 <Item>
                   <Item.Content>
@@ -151,7 +151,7 @@ class Auth extends Component {
                 <Button type='submit'>Submit</Button>
               </Group>
             </Form>
-          </div>
+        </div>
 
     );
   }

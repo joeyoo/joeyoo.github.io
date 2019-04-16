@@ -1,24 +1,22 @@
 import React from 'react';
-import { Container, Header, Item, Icon} from 'semantic-ui-react';
+import { Container, Header, Item, Icon, Table} from 'semantic-ui-react';
 
 export default function Project(props) {
 	const {
 		title,
 		desc,
+		note,
 		thumb,
+		src,
 		link
 	} = props;
 
 	return (
-    <Item>
-      <Item.Content>
-    		<Item.Header as='p'>{title}</Item.Header>
- 				<Item.Image size='small' src='https://react.semantic-ui.com/images/wireframe/image.png' />
-        <Item.Description>
-          <p>{desc || "This is just some sample text in case I have nothing to say. I have nothing to say."}</p>
-          <a href={link}>Source <Icon name='code' /></a>
-        </Item.Description>
-      </Item.Content>
-    </Item>
+    <Table.Row>
+      <Table.Cell>{title}</Table.Cell>
+      <Table.Cell>{desc || "This is just some sample text in case I have nothing to say. I have nothing to say."}</Table.Cell>
+      <Table.Cell>{note || "Note"}</Table.Cell>
+      <Table.Cell selectable><a href={src} target='_blank'><Icon name='code' /></a>{link ? (<a href={src} target='_blank'><Icon name='linkify' /></a>) : ''}</Table.Cell>
+    </Table.Row>
 	);
 }
