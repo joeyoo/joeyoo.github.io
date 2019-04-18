@@ -138,7 +138,7 @@ class Auth extends Component {
                 <Item>
                   <Item.Content>
                     <Item.Description>
-                      I'm Joseph Yoo, and you've reached the entrance to my intensely guarded portfolio. For the sake of privacy, you will need to know the secret word to continue.
+                      If this is for an application, you'll find the password near the top of my attached resume!
                     </Item.Description>
                   </Item.Content>
                 </Item>
