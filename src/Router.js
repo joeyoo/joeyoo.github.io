@@ -89,7 +89,7 @@ export default class Router extends Component {
     return (
         <BrowserRouter>
           <Switch>
-            {/*<BrowserRoute path="/" component={Home} />*/}
+            <BrowserRoute path="/" component={Home} />
             <BrowserRoute path="/auth" component={Auth}/>
             <Route path={"/projects"}
                  component={Projects}

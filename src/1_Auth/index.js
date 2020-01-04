@@ -3,7 +3,6 @@ import request from 'request-promise';
 import {ServerURL} from '../0_config';
 import {withRouter} from 'react-router-dom';
 import { Button, Form, Placeholder, Reveal, Grid, Icon, Popup, Container, Item, Image} from 'semantic-ui-react';
-import portrait from '../portrait.png';
 
 const GateKeeper = ({active, disabled, eye, eye2, ...props}) => (
   <Reveal active={active} disabled={disabled} animated="move" style={{width: "75px"}} >

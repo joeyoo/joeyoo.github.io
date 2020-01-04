@@ -1,72 +1,34 @@
-import React, {Component} from 'react'
-import { Button, Form, Grid, Header, Image, Message, Segment, Icon, Menu, Label} from 'semantic-ui-react'
+import React from 'react'
+import { List, Grid, GridRow, GridColumn, Container, Button, Icon } from 'semantic-ui-react'
 
-class MenuE extends Component {
-  state = { activeItem: 'home' }
-
-  handleItemClick = (e, { name }) => this.setState({ activeItem: name })
-
+class Home extends React.Component {
   render() {
-    const { activeItem } = this.state
-
     return (
-      <Menu pointing secondary vertical>
-        <Menu.Item
-          name='home'
-          active={activeItem === 'home'}
-          onClick={this.handleItemClick}
-        >
-        Home
-        <Icon link name='unlock' fitted />
-        </Menu.Item>
-        <Menu.Item
-          name='projects'
-          active={activeItem === 'projects'}
-          onClick={this.handleItemClick}
-        >
-        Projects
-        <Icon link name='lock' fitted />
-        </Menu.Item>
-        <Menu.Item
-          name='resume'
-          active={activeItem === 'resume'}
-          onClick={this.handleItemClick}
-        >
-        Resume
-        <Icon link name='lock' fitted />
-        </Menu.Item>
-      </Menu>
-    )
+      <Grid centered divided textAlign='center' id="home" columns='2'>
+        <GridRow divided stretched>
+          <GridColumn width='4'>
+            <GridRow>
+              <Button circular color='linkedin' icon='linkedin' />
+              <Button circular color='github' icon='github' />
+            </GridRow>
+            <GridRow>
+              <List centered link>
+                <List.Item active>Hello</List.Item>
+                <List.Item as='a'>Projects</List.Item>
+                <List.Item as='a'>Tutorials</List.Item>
+                <List.Item as='a'>Writing</List.Item>
+              </List>
+            </GridRow>
+
+          </GridColumn>
+          <GridColumn width='10' className='home-content'>
+            <Container text>
+            </Container>
+          </GridColumn>
+        </GridRow>
+      </Grid>
+    );
   }
 }
 
-const LoginForm = () => (
-  <div className='login-form'>
-    {/*
-      Heads up! The styles below are necessary for the correct render of this example.
-      You can do same with CSS, the main idea is that all the elements up to the `Grid`
-      below must have a height of 100%.
-    */}
-    <style>{`
-      body > div,
-      body > div > div,
-      body > div > div > div.login-form {
-        height: 100%;
-      }
-    `}</style>
-    <Grid textAlign='center' style={{ height: '100%' }} verticalAlign='middle'>
-      <Grid.Column style={{ maxWidth: 450 }}>
-        <Header as='h1' id='home-header' textAlign='center'>
-          Hi, I'm Joseph Yoo.
-        </Header>
-        <MenuE />
-        <div>
-          <Icon link name='github' />
-          <Icon link name='linkedin' />
-        </div>
-      </Grid.Column>
-    </Grid>
-  </div>
-)
-
-export default LoginForm
+export default Home;
