@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
-import { Grid, Image, Step, Icon, Sticky, Container, Header, Menu, Button, Table } from 'semantic-ui-react';
-import {ServerURL} from '../0_config';
-import {withRouter, matchPath} from 'react-router-dom';
-import Project from './Project';
-import SideMenu from './SideMenu';
+import { matchPath, withRouter } from 'react-router-dom';
 import request from 'request-promise';
+import { Table } from 'semantic-ui-react';
+import { ServerURL } from '../0_config';
+import Project from './Project';
 
 class Projects extends Component {
   constructor(props) {

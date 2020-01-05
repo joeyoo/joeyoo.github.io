@@ -1,19 +1,8 @@
 import React, { Component } from "react";
-import request from "request-promise";
-import { ServerURL } from "../0_config";
 import { withRouter } from "react-router-dom";
-import {
-  Button,
-  Form,
-  Placeholder,
-  Reveal,
-  Grid,
-  Icon,
-  Popup,
-  Container,
-  Item,
-  Image
-} from "semantic-ui-react";
+import request from "request-promise";
+import { Button, Form, Icon, Item, Popup, Reveal } from "semantic-ui-react";
+import { ServerURL } from "../0_config";
 
 const GateKeeper = ({ active, disabled, eye, eye2, ...props }) => (
   <Reveal
@@ -140,7 +129,7 @@ class Auth extends Component {
     }));
     var eye = document.getElementById("eye"),
       eye2 = document.getElementById("eye2"),
-      rotI =
+      rotI = eye ?
         Math.atan2(
           event.target.getBoundingClientRect().left -
             eye.getBoundingClientRect().left,
@@ -149,7 +138,8 @@ class Auth extends Component {
         ) *
           (180 / Math.PI) *
           -1 +
-        180;
+        180
+        : 0;
 
     transform(eye, "rotate", rotI, "deg");
     transform(eye2, "rotate", rotI, "deg");

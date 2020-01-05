@@ -1,12 +1,11 @@
 import React from 'react';
-import { Container, Header, Item, Icon, Table} from 'semantic-ui-react';
+import { Icon, Table } from 'semantic-ui-react';
 
 export default function Project(props) {
 	const {
 		title,
 		desc,
 		note,
-		thumb,
 		src,
 		link
 	} = props;

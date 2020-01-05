@@ -1,18 +1,10 @@
 import React, { Component } from "react";
-import {
-  BrowserRouter,
-  Route as BrowserRoute,
-  Redirect,
-  withRouter,
-  Switch
-} from "react-router-dom";
-import { Grid, Container, Button, Sticky } from "semantic-ui-react";
+import { BrowserRouter, Redirect, Route as BrowserRoute, Switch, withRouter } from "react-router-dom";
 import request from "request-promise";
-
 import { ServerURL } from "./0_config";
 import Auth from "./1_Auth";
 import Projects from "./1_Projects";
-import Home from "./1_Home";
+
 
 class AuthRoute extends Component {
   constructor(props) {
